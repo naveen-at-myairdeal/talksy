@@ -23,6 +23,7 @@ _i1.GetIt $initGetIt(
     environment,
     environmentFilter,
   );
+  gh.factory<_i3.AuthScreensAssets>(() => _i3.AuthScreensAssets());
   gh.factory<_i3.OnBoardingScreenAssets>(() => _i3.OnBoardingScreenAssets());
   return get;
 }

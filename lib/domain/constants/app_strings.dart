@@ -9,5 +9,8 @@ abstract class AppStrings {
   static const String oneboarding_screen_two_body_label = "Chat with friends, share laughs, and make every\nmoment more fun!";
   static const String onboarding_screen_three_middle_head = "Chat, Laugh, Repeat!";
   static const String oneboarding_screen_three_body_label = "Where every conversation brings more fun, more \nconnection, and endless good times!";
-
+  static const String signin_screen_add_phone_number_title = "Add Your Phone Number";
+  static const String signin_screen_body = "Talksy will need your phone number to\n verify your account";
+  static const String signin_screen_change_number = "Change Number?";
+  static const String signin_screen_next_button = "Next";
 }
