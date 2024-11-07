@@ -1,23 +1,31 @@
+import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+import 'domain/dependency_injection/injectable.dart';
+import 'domain/generated/codegen_loader.g.dart';
+import 'presentation/app.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await configureInjection();
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      //ll
-      home: Scaffold()
-    );
-  }
+  WidgetsBinding.instance.addPostFrameCallback((_) async {
+    await EasyLocalization.ensureInitialized();
+  });
+
+  runApp(EasyLocalization(
+      path: 'assets/translations',
+      supportedLocales: const [
+        Locale('en', 'US'), // English (United States)
+        Locale('ar', 'SA'), // Arabic (Saudi Arabia)
+        Locale('ml', 'IN'), // Malayalam (India)
+        Locale('hi', 'IN'), // Hindi (India)
+        Locale('zh', 'CN'), // Simplified Chinese (China)
+      ],
+      fallbackLocale: const Locale('en', 'US'),
+      saveLocale: true,
+      startLocale: const Locale('en', 'US'),
+      assetLoader: const CodegenLoader(),
+      child: const MyApp()));
 }
