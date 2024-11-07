@@ -16,7 +16,7 @@ class OnboardingScreen extends StatefulWidget {
 
 List<String> imageAssetPaths = [Assetpaths.onBoardingScreenAssets.firsImage, Assetpaths.onBoardingScreenAssets.secondImage, Assetpaths.onBoardingScreenAssets.thirdImage];
 List<String> middleHeadStrings = [AppStrings.onboarding_screen_one_middle_head, AppStrings.onboarding_screen_two_middle_head, AppStrings.onboarding_screen_three_middle_head];
-List<String> bodytexts = [AppStrings.oneboarding_screen_one_body_label,AppStrings.oneboarding_screen_two_body_label,AppStrings.oneboarding_screen_three_body_label];
+List<String> bodytexts = [AppStrings.oneboarding_screen_one_body_label, AppStrings.oneboarding_screen_two_body_label, AppStrings.oneboarding_screen_three_body_label];
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   List<Widget> images = List.generate(imageAssetPaths.length, (int indedx) {
@@ -24,16 +24,28 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       imageAssetPaths[indedx],
     );
   });
-  ValueNotifier<PageController> pageController = ValueNotifier(PageController());
+  // ValueNotifier<÷> pageController = ValueNotifier(PageController());
   ValueNotifier<double> currentIndex = ValueNotifier(0);
+  PageController pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: Row(
+      floatingActionButton:SizedBox(height: 80.h,
+      child:  Column(
         children: [
-          OutlinedButton(onPressed: (){}, child: Text("Skip"))
+          Row(
+            children: [
+              const SizedBox(width: 50,),
+              OutlinedButton(onPressed: () {}, child: Text("Skip")),
+              const Spacer(),
+              ElevatedButton(onPressed: () {}, child: Icon(Icons.arrow_forward_ios_rounded,color: Colors.white,)),
+               SizedBox(width: 17.w,),
+            ],
+          ),
+          SizedBox( height: 18.h,)
         ],
+      ),
       ),
       body: SafeArea(
         child: Column(
@@ -57,14 +69,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 width: 290.w,
                 height: 269.h,
                 child: PageView.builder(
-                  controller: pageController.value,
+                  controller: pageController,
                   onPageChanged: (value) {
                     currentIndex.value = value.toDouble();
                   },
                   itemCount: images.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    return images[index];
+                    return ValueListenableBuilder(
+                        valueListenable: currentIndex,
+                        builder: (context, v, c) {
+                          return images[v.toInt()];
+                        });
                   },
                 )),
             SizedBox(
@@ -110,37 +126,39 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               height: 131.h,
 
               child: PageView.builder(
-                  controller: pageController.value,
+                  controller: pageController,
                   itemCount: images.length,
                   scrollDirection: Axis.horizontal,
+                  onPageChanged: (value) {
+                    currentIndex.value = value.toDouble();
+                  },
                   itemBuilder: (context, index) {
-                    return ValueListenableBuilder(
-                      valueListenable: currentIndex,
-                      builder: (context,v,c) {
-                        return Column(
-                          children: [
-                            SizedBox(
-                              height: 18.h,
-                            ),
-                            Text(
-                              middleHeadStrings[v.toInt()],
-                              style: AppTheme.displayMediumPrimaryColor,
-                            ),
-                            SizedBox(
-                              height: 14.h,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 15,right: 15),
-                              child: Text(
-                                bodytexts[v.toInt()],
-                                style: AppTheme.bodySmallGreyCOlor,textAlign:TextAlign.center,
+                    return ValueListenableBuilder<double>(
+                        valueListenable: currentIndex,
+                        builder: (context, v, c) {
+                          return Column(
+                            children: [
+                              SizedBox(
+                                height: 18.h,
                               ),
-                            ),
-              
-                          ],
-                        );
-                      }
-                    );
+                              Text(
+                                middleHeadStrings[v.toInt()],
+                                style: AppTheme.displayMediumPrimaryColor,
+                              ),
+                              SizedBox(
+                                height: 14.h,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 15, right: 15),
+                                child: Text(
+                                  bodytexts[v.toInt()],
+                                  style: AppTheme.bodySmallGreyCOlor,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ],
+                          );
+                        });
                   }),
             )
           ],
