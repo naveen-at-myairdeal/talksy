@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 
 import 'package:flutter/material.dart';
@@ -5,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'domain/dependency_injection/injectable.dart';
 import 'domain/generated/codegen_loader.g.dart';
 import 'presentation/app.dart';
+import 'package:http/http.dart' as http;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,6 +16,8 @@ void main() async {
   WidgetsBinding.instance.addPostFrameCallback((_) async {
     await EasyLocalization.ensureInitialized();
   });
+
+
 
   runApp(EasyLocalization(
       path: 'assets/translations',

@@ -20,4 +20,6 @@ class AuthScreensAssets {
   final String indianFLag = "assets/images/india-flag-icon.png";
   final String usaFlag = "assets/images/united-states-flag-icon.png";
   final String spainFlag = "assets/images/spain-country-flag-icon.png";
+  final String profilePlaceHolder = "assets/images/Group 154 (1).svg";
+  final String cameraIconAtProfileImage = 'assets/images/Group 79 (1).svg';
 }

@@ -14,187 +14,418 @@ class AppTheme {
   static const Color backgroundColor = Colors.white;
 
   static const Color buttonColor = Color(0xFF6A0DAD); // Purple
-
-  // Define text styles
-  /*
-        100 - Thin
-        200 - Extra Light (Ultra Light)
-        300 - Light
-        400 - Normal (Regular)
-        500 - Medium
-        600 - Semi Bold (Demi Bold)
-        700 - Bold
-        800 - Extra Bold (Ultra Bold)
-        900 - Black (Heavy)
-  */
-
-//--------------------------------------------
-
-  static TextStyle displayLarge = Platform.isIOS
-      ? GoogleFonts.openSans(
-          fontSize: 25.sp,
-          fontWeight: FontWeight.normal,
-        )
-      : GoogleFonts.openSans(
-          fontSize: 30.sp,
-          fontWeight: FontWeight.w600,
-        );
-
-  static TextStyle displayLargePrimaryColor = Platform.isIOS
-      ? GoogleFonts.openSans(
-          fontSize: 25.sp,
-          fontWeight: FontWeight.normal,
-          color: primaryColor,
-        )
-      : GoogleFonts.openSans(
-          fontSize: 30.sp,
-          fontWeight: FontWeight.normal,
-          color: primaryColor,
-        );
-//--------------------------------------------
-
-  static TextStyle displayMediumPrimaryColor = Platform.isIOS
-      ? GoogleFonts.openSans(
-          fontSize: 21.sp,
-          fontWeight: FontWeight.bold,
-          color: primaryColor,
-        )
-      : GoogleFonts.openSans(
-          fontSize: 27.sp,
-          fontWeight: FontWeight.bold,
-          color: primaryColor,
-        );
-
-  static TextStyle displayMedium = Platform.isIOS
-      ? GoogleFonts.openSans(
-          fontSize: 27.sp,
-          fontWeight: FontWeight.bold,
-        )
-      : GoogleFonts.openSans(
-          fontSize: 27.sp,
-          fontWeight: FontWeight.bold,
-        );
+// Define text styles
+/*
+      100 - Thin
+      200 - Extra Light (Ultra Light)
+      300 - Light
+      400 - Normal (Regular)
+      500 - Medium
+      600 - Semi Bold (Demi Bold)
+      700 - Bold
+      800 - Extra Bold (Ultra Bold)
+      900 - Black (Heavy)
+*/
 
 //--------------------------------------------
 
-  static TextStyle displaySmall = Platform.isIOS
-      ? GoogleFonts.openSans(
-          fontSize: 18.sp,
-          fontWeight: FontWeight.bold,
-        )
-      : GoogleFonts.openSans(
-          fontSize: 24.sp,
-          fontWeight: FontWeight.bold,
-        );
+static TextStyle displayLarge = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 24.sp,  // 30 - 6
+        fontWeight: FontWeight.w600,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 30.sp,
+        fontWeight: FontWeight.w600,
+      );
 
-  static TextStyle displaySmallPrimaryColor = Platform.isIOS
-      ? GoogleFonts.openSans(
-          fontSize: 18.sp,
-          fontWeight: FontWeight.bold,
-          color: primaryColor,
-        )
-      : GoogleFonts.openSans(
-          fontSize: 24.sp,
-          fontWeight: FontWeight.bold,
-          color: primaryColor,
-        );
+static TextStyle displayLargePrimaryColor = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 24.sp,  // 30 - 6
+        fontWeight: FontWeight.normal,
+        color: primaryColor,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 30.sp,
+        fontWeight: FontWeight.normal,
+        color: primaryColor,
+      );
 
-//--------------------------------------------
-
-  static TextStyle titleLarge = Platform.isIOS
-      ? GoogleFonts.openSans(
-          fontSize: 16.sp,
-          fontWeight: FontWeight.w600,
-        )
-      : GoogleFonts.openSans(
-          fontSize: 22.sp,
-          fontWeight: FontWeight.w600,
-        );
-
-   static TextStyle titleLargePrimaryColor = Platform.isIOS
-      ? GoogleFonts.openSans(
-          fontSize: 16.sp,
-          fontWeight: FontWeight.w600,
-          color: primaryColor
-        )
-      : GoogleFonts.openSans(
-          fontSize: 22.sp,
-          fontWeight: FontWeight.w600,
-          color: primaryColor
-        );
-
-  //--------------------------------------------
-
-  static TextStyle titleMedium = GoogleFonts.openSans(
-    fontSize: 20.sp,
-    fontWeight: FontWeight.normal,
-  );
+static TextStyle displayLargeGreyColor = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 24.sp,  // 30 - 6
+        fontWeight: FontWeight.normal,
+        color: textColorSecondary,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 30.sp,
+        fontWeight: FontWeight.normal,
+        color: textColorSecondary,
+      );
 
 //--------------------------------------------
 
-  static TextStyle titleMediumGreyColor = GoogleFonts.openSans(
-    fontSize: 20.sp,
-    fontWeight: FontWeight.normal,
-  );
+static TextStyle displayMedium = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 21.sp,  // 27 - 6
+        fontWeight: FontWeight.bold,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 27.sp,
+        fontWeight: FontWeight.bold,
+      );
+
+static TextStyle displayMediumPrimaryColor = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 21.sp,  // 27 - 6
+        fontWeight: FontWeight.bold,
+        color: primaryColor,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 27.sp,
+        fontWeight: FontWeight.bold,
+        color: primaryColor,
+      );
+
+static TextStyle displayMediumGreyColor = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 21.sp,  // 27 - 6
+        fontWeight: FontWeight.bold,
+        color: textColorSecondary,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 27.sp,
+        fontWeight: FontWeight.bold,
+        color: textColorSecondary,
+      );
 
 //--------------------------------------------
 
-  static TextStyle bodyLarge = GoogleFonts.openSans(
-    fontSize: 18.sp,
-    fontWeight: FontWeight.w600,
-  );
+static TextStyle displaySmall = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 18.sp,  // 24 - 6
+        fontWeight: FontWeight.bold,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 24.sp,
+        fontWeight: FontWeight.bold,
+      );
+
+static TextStyle displaySmallPrimaryColor = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 18.sp,  // 24 - 6
+        fontWeight: FontWeight.bold,
+        color: primaryColor,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 24.sp,
+        fontWeight: FontWeight.bold,
+        color: primaryColor,
+      );
+
+static TextStyle displaySmallGreyColor = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 18.sp,  // 24 - 6
+        fontWeight: FontWeight.bold,
+        color: textColorSecondary,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 24.sp,
+        fontWeight: FontWeight.bold,
+        color: textColorSecondary,
+      );
 
 //--------------------------------------------
 
-  static TextStyle bodyMediu = GoogleFonts.openSans(
-    fontSize: 18.sp,
-    fontWeight: FontWeight.normal,
-  );
+static TextStyle titleLarge = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 16.sp,  // 22 - 6
+        fontWeight: FontWeight.w600,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 22.sp,
+        fontWeight: FontWeight.w600,
+      );
+
+static TextStyle titleLargePrimaryColor = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 16.sp,  // 22 - 6
+        color: primaryColor,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 22.sp,
+        color: primaryColor,
+      );
+
+static TextStyle titleLargeGreyColor = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 16.sp,  // 22 - 6
+        fontWeight: FontWeight.w600,
+        color: textColorSecondary,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 22.sp,
+        fontWeight: FontWeight.w600,
+        color: textColorSecondary,
+      );
 
 //--------------------------------------------
 
-  static TextStyle bodySmall = GoogleFonts.openSans(
-    fontSize: 16.sp,
-    fontWeight: FontWeight.normal,
-  );
+static TextStyle titleMedium = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 14.sp,  // 20 - 6
+        fontWeight: FontWeight.normal,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 20.sp,
+        fontWeight: FontWeight.normal,
+      );
+
+static TextStyle titleMediumPrimaryColor = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 14.sp,  // 20 - 6
+        fontWeight: FontWeight.normal,
+        color: primaryColor,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 20.sp,
+        fontWeight: FontWeight.normal,
+        color: primaryColor,
+      );
+
+static TextStyle titleMediumGreyColor = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 14.sp,  // 20 - 6
+        fontWeight: FontWeight.normal,
+        color: textColorSecondary,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 20.sp,
+        fontWeight: FontWeight.normal,
+        color: textColorSecondary,
+      );
 
 //--------------------------------------------
 
-  static TextStyle bodySmallGreyCOlor = Platform.isIOS
-      ? GoogleFonts.openSans(
-          fontSize: 12.sp,
-          fontWeight: FontWeight.normal,
-          color: textColorSecondary,
-        )
-      : GoogleFonts.openSans(
-          fontSize: 16.sp,
-          fontWeight: FontWeight.normal,
-          color: textColorSecondary,
-        );
+static TextStyle bodyLarge = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 12.sp,  // 18 - 6
+        fontWeight: FontWeight.w600,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 18.sp,
+        fontWeight: FontWeight.w600,
+      );
+
+static TextStyle bodyLargePrimaryColor = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 12.sp,  // 18 - 6
+        fontWeight: FontWeight.w600,
+        color: primaryColor,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 18.sp,
+        fontWeight: FontWeight.w600,
+        color: primaryColor,
+      );
+
+static TextStyle bodyLargeGreyColor = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 12.sp,  // 18 - 6
+        fontWeight: FontWeight.w600,
+        color: textColorSecondary,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 18.sp,
+        fontWeight: FontWeight.w600,
+        color: textColorSecondary,
+      );
 
 //--------------------------------------------
 
-  static TextStyle labelLarge = GoogleFonts.openSans(
-    fontSize: 16.sp,
-    fontWeight: FontWeight.normal,
-  );
+static TextStyle bodyMedium = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 12.sp,  // 18 - 6
+        fontWeight: FontWeight.normal,
+        color: Colors.black,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 18.sp,
+        fontWeight: FontWeight.normal,
+        color: Colors.black,
+      );
 
-  //--------------------------------------------
+static TextStyle bodyMediumPrimaryColor = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 12.sp,  // 18 - 6
+        fontWeight: FontWeight.normal,
+        color: primaryColor,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 18.sp,
+        fontWeight: FontWeight.normal,
+        color: primaryColor,
+      );
 
-  static TextStyle labelMedium = GoogleFonts.openSans(
-    fontSize: 14.sp,
-    fontWeight: FontWeight.w600,
-  );
-
-  //--------------------------------------------
-
-  static TextStyle labelSmall = GoogleFonts.openSans(
-    fontSize: 12.sp,
-    fontWeight: FontWeight.w600,
-  );
+static TextStyle bodyMediumGreyColor = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 12.sp,  // 18 - 6
+        fontWeight: FontWeight.normal,
+        color: textColorSecondary,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 18.sp,
+        fontWeight: FontWeight.normal,
+        color: textColorSecondary,
+      );
 
 //--------------------------------------------
 
+static TextStyle bodySmall = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 10.sp,  // 16 - 6
+        fontWeight: FontWeight.normal,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.normal,
+      );
+
+static TextStyle bodySmallPrimaryColor = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 10.sp,  // 16 - 6
+        fontWeight: FontWeight.normal,
+        color: primaryColor,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.normal,
+        color: primaryColor,
+      );
+
+static TextStyle bodySmallGreyColor = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 10.sp,  // 16 - 6
+        fontWeight: FontWeight.normal,
+        color: textColorSecondary,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.normal,
+        color: textColorSecondary,
+      );
+
+//--------------------------------------------
+
+static TextStyle labelLarge = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 10.sp,  // 16 - 6
+        fontWeight: FontWeight.normal,
+        color: Colors.grey[400],
+      )
+    : GoogleFonts.openSans(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.normal,
+        color: Colors.grey[400],
+      );
+
+static TextStyle labelLargePrimaryColor = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 10.sp,  // 16 - 6
+        fontWeight: FontWeight.normal,
+        color: primaryColor,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.normal,
+        color: primaryColor,
+      );
+
+static TextStyle labelLargeGreyColor = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 10.sp,  // 16 - 6
+        fontWeight: FontWeight.normal,
+        color: textColorSecondary,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 16.sp,
+        fontWeight: FontWeight.normal,
+        color: textColorSecondary,
+      );
+
+//--------------------------------------------
+
+static TextStyle labelMedium = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 8.sp,  // 14 - 6
+        fontWeight: FontWeight.w600,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w600,
+      );
+
+static TextStyle labelMediumPrimaryColor = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 8.sp,  // 14 - 6
+        fontWeight: FontWeight.w600,
+        color: primaryColor,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w600,
+        color: primaryColor,
+      );
+
+static TextStyle labelMediumGreyColor = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 8.sp,  // 14 - 6
+        fontWeight: FontWeight.w600,
+        color: textColorSecondary,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w600,
+        color: textColorSecondary,
+      );
+
+//--------------------------------------------
+
+static TextStyle labelSmall = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 6.sp,  // 12 - 6
+        fontWeight: FontWeight.w600,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 12.sp,
+        fontWeight: FontWeight.w600,
+      );
+
+static TextStyle labelSmallPrimaryColor = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 6.sp,  // 12 - 6
+        fontWeight: FontWeight.w600,
+        color: primaryColor,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 12.sp,
+        fontWeight: FontWeight.w600,
+        color: primaryColor,
+      );
+
+static TextStyle labelSmallGreyColor = Platform.isIOS
+    ? GoogleFonts.openSans(
+        fontSize: 6.sp,  // 12 - 6
+        fontWeight: FontWeight.w600,
+        color: textColorSecondary,
+      )
+    : GoogleFonts.openSans(
+        fontSize: 12.sp,
+        fontWeight: FontWeight.w600,
+        color: textColorSecondary,
+      );
+
+//--------------------------------------------
   static final ThemeData themeData = ThemeData(
     primaryColor: primaryColor,
     scaffoldBackgroundColor: backgroundColor,
@@ -205,7 +436,7 @@ class AppTheme {
       titleLarge: titleLarge,
       titleMedium: titleMedium,
       bodyLarge: bodyLarge,
-      bodyMedium: bodyMediu,
+      bodyMedium: bodyMedium,
       bodySmall: bodySmall,
       labelLarge: labelLarge,
       labelMedium: labelMedium,
@@ -215,6 +446,7 @@ class AppTheme {
     // Button theme
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
+        textStyle: GoogleFonts.openSans(fontSize: 24.sp,color: Colors.white),
         backgroundColor: primaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
