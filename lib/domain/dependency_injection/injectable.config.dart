@@ -24,6 +24,7 @@ _i1.GetIt $initGetIt(
     environmentFilter,
   );
   gh.factory<_i3.AuthScreensAssets>(() => _i3.AuthScreensAssets());
+  gh.factory<_i3.BottomNavAssets>(() => _i3.BottomNavAssets());
   gh.factory<_i3.OnBoardingScreenAssets>(() => _i3.OnBoardingScreenAssets());
   return get;
 }

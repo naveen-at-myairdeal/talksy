@@ -7,6 +7,7 @@ import '../../presentation/auth/enter_otp_screen.dart';
 import '../../presentation/auth/enter_phone_number.dart';
 import '../../presentation/auth/get_user_name_and_profile_pic_screen.dart';
 import '../../presentation/auth/select_language_screen.dart';
+import '../../presentation/call/new_call_contact_list_screen.dart';
 
 abstract class RoutePaths {
   static const String onBoardingScreen = '/onboarding_screen';
@@ -14,9 +15,10 @@ abstract class RoutePaths {
   static const String enterOtpPage = '/enterOtpPage';
   static const String languageSelectionScreen = '/languageSelectionScreen';
   static const String getUserNameAndProfilePicture = '/getUserNameAndProfilePicture';
+  static const String newCallScreenContactList = '/newCallScreenContactList';
 }
 
-//GetUserNameAndProfilePicture
+//NewCallScreen
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -39,6 +41,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => LanguageSelectionScreen());
       case RoutePaths.getUserNameAndProfilePicture:
         return MaterialPageRoute(builder: (_) => GetUserNameAndProfilePicture());
+      case RoutePaths.newCallScreenContactList:
+        return MaterialPageRoute(builder: (_) => ContactsPage());
 
       default:
         return MaterialPageRoute(

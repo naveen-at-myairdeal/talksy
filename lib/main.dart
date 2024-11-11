@@ -34,3 +34,5 @@ void main() async {
       assetLoader: const CodegenLoader(),
       child: const MyApp()));
 }
+
+//110207
