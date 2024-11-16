@@ -49,16 +49,11 @@ class _OTPInputScreenState extends State<OTPInputScreen> {
                     ),
                   ],
                 ),
-
                 SizedBox(height: 32.h),
                 SvgPicture.asset(Assetpaths.authScreensAssets.otpPageBanner),
                 SizedBox(height: 32.h),
-
-                // Title
                 Text(AppStrings.otp_screen_entercode, style: AppTheme.displayLarge),
-
                 const SizedBox(height: 16),
-
                 // Description
                 RichText(
                   text: TextSpan(
@@ -71,14 +66,8 @@ class _OTPInputScreenState extends State<OTPInputScreen> {
                     ],
                   ),
                 ),
-
                 const SizedBox(height: 8),
-
-                // Phone Number
-
                 const SizedBox(height: 32),
-
-                // PIN Code Fields
                 PinCodeTextField(
                   appContext: context,
                   length: 6,
@@ -91,8 +80,8 @@ class _OTPInputScreenState extends State<OTPInputScreen> {
                   pinTheme: PinTheme(
                     shape: PinCodeFieldShape.box,
                     borderRadius: BorderRadius.circular(8),
-                    fieldHeight: 60,
-                    fieldWidth: 60,
+                    fieldHeight: 55.w,
+                    fieldWidth: 55.w,
                     activeFillColor: Colors.white,
                     selectedFillColor: Colors.white,
                     inactiveFillColor: Colors.purple[50],
@@ -120,14 +109,10 @@ class _OTPInputScreenState extends State<OTPInputScreen> {
                     color: Colors.purple,
                   ),
                 ),
-
                 const SizedBox(height: 32),
-
-                // Resend Code Button
                 Center(
                   child: TextButton(
                     onPressed: () {
-                      // Handle resend code
                     },
                     child: const Text(
                       'Re-send Code',
@@ -138,10 +123,7 @@ class _OTPInputScreenState extends State<OTPInputScreen> {
                     ),
                   ),
                 ),
-
                 const Spacer(),
-
-                // Next Button
                 SizedBox(
                   width: double.infinity,
                   height: 50,

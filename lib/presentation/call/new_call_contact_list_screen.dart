@@ -7,22 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../domain/theme/app_theme.dart';
-
-class ContactsProvider {
-  static const platform = MethodChannel('com.example.contacts');
-
-  Future<dynamic> getContacts() async {
-    try {
-      var contacts = await platform.invokeMethod('getContacts');
-      // log(contacts.toString());
-      return contacts;
-      // return contacts.cast<Map<dynamic, dynamic>>();
-    } on PlatformException catch (e) {
-      print("Failed to get contacts: ${e.message}");
-      return [];
-    }
-  }
-}
+import '../../infrastructure/contacts_provider.dart';
 
 class ContactsPage extends StatefulWidget {
   @override

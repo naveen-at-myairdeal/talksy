@@ -44,12 +44,13 @@ class _CallHistoryScreenState extends State<CallHistoryScreen> {
                       ],
                     ),
                     SizedBox(
-                      height: 34.h,
+                      height: 15.h,
                     ),
                     TextField(
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.search),
                         hintText: 'Contact, calls, chats..',
+                        hintStyle: AppTheme.bodyMediumGreyColor,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12.0),
                           borderSide: BorderSide.none,
@@ -58,50 +59,34 @@ class _CallHistoryScreenState extends State<CallHistoryScreen> {
                         filled: true,
                       ),
                     ),
-                    SizedBox(height: 20),
-                    ListTile(
-                      leading: Icon(Icons.group, color: Colors.purple),
-                      title: Text('New Group Call'),
-                      trailing: Icon(Icons.arrow_forward_ios, color: Colors.grey),
-                      onTap: () {},
+                    SizedBox(height: 15),
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.group, color: Colors.purple),
+                              SizedBox(width: 16), 
+                              Text('New Group Call', style: TextStyle(fontSize: 16)),
+                            ],
+                          ),
+                          Icon(Icons.arrow_forward_ios, color: Colors.grey),
+                        ],
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border(bottom: BorderSide(color: Colors.grey.shade300, width: 1)),
+                      ),
                     ),
                     SizedBox(height: 10),
                     Expanded(
                       child: ListView(
                         children: [
-                          buildCallTile(
-                            context,
-                            "Zap,ciok,Lii, anny",
-                            "51:16 Mins",
-                            "4",
-                            "assets/group_image.png",
-                          ),
-                          buildCallTile(
-                            context,
-                            "Jack",
-                            "10:19 Mins",
-                            "4",
-                            "assets/jack_image.png",
-                            subtitleTime: "10:40 AM",
-                          ),
-                          buildCallTile(
-                            context,
-                            "Micky",
-                            "Declined calls",
-                            "1",
-                            "assets/micky_image.png",
-                            subtitleTime: "10:40 AM",
-                            declined: true,
-                          ),
-                          buildCallTile(
-                            context,
-                            "XYZ Group",
-                            "51:20 Mins",
-                            "1",
-                            "assets/xyz_group_image.png",
-                            subtitleTime: "1:04 PM",
-                            videoCall: true,
-                          ),
+                          buildCallTile(context, "Zap,ciok,Lii, anny", "51:16 Mins", "4", "assets/group_image.png", status: CallStatus.videoMissed),
+                          buildCallTile(context, "Jack", "10:19 Mins", "4", "assets/jack_image.png", subtitleTime: "10:40 AM", status: CallStatus.callOutGoing),
+                          buildCallTile(context, "Micky", "Declined calls", "1", "assets/micky_image.png", subtitleTime: "10:40 AM", status: CallStatus.callMissed),
+                          buildCallTile(context, "XYZ Group", "51:20 Mins", "1", "assets/xyz_group_image.png", subtitleTime: "1:04 PM", status: CallStatus.videoIncomming),
                           SizedBox(
                             height: 30.h,
                           ),
@@ -140,16 +125,16 @@ class _CallHistoryScreenState extends State<CallHistoryScreen> {
                         style: AppTheme.displayLargePrimaryColor,
                       ),
                       const Spacer(),
-                       IconButton(
-                          onPressed: () {
-                            Navigator.of(context).pushNamed(RoutePaths.newCallScreenContactList);
-                          },
-                          icon: Icon(
-                            Icons.add_circle_outlined,
-                            color: AppTheme.primaryColor,
-                            size: 30,
-                          ),
-                        )
+                      IconButton(
+                        onPressed: () {
+                          Navigator.of(context).pushNamed(RoutePaths.newCallScreenContactList);
+                        },
+                        icon: Icon(
+                          Icons.add_circle_outlined,
+                          color: AppTheme.primaryColor,
+                          size: 30,
+                        ),
+                      )
                     ],
                   ),
                   const Spacer(),
@@ -176,17 +161,19 @@ class _CallHistoryScreenState extends State<CallHistoryScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 30.h,),
-                 ElevatedButton(
-                              onPressed: () {
-                                setState(() {
-                                  isCallsAwailable = true;
-                                });
-                              },
-                              child: Text(
-                                "Go to  history state",
-                                style: TextStyle(color: Colors.white),
-                              )),
+                  SizedBox(
+                    height: 30.h,
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          isCallsAwailable = true;
+                        });
+                      },
+                      child: Text(
+                        "Go to  history state",
+                        style: TextStyle(color: Colors.white),
+                      )),
                   const Spacer(),
                 ],
               ),
@@ -202,11 +189,10 @@ Widget buildCallTile(
   String count,
   String imagePath, {
   String? subtitleTime,
-  bool declined = false,
-  bool videoCall = false,
+  required CallStatus status,
 }) {
   return Container(
-    padding: EdgeInsets.all(12),
+    padding: EdgeInsets.all(8),
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(8),
@@ -224,7 +210,7 @@ Widget buildCallTile(
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(title, style: AppTheme.bodyMedium),
+                  Text(title, style: AppTheme.bodySmall),
                   Text("($count)", style: AppTheme.labelMediumGreyColor),
                 ],
               ),
@@ -247,15 +233,51 @@ Widget buildCallTile(
           ),
         ),
         SizedBox(width: 12),
-        Icon(
-          declined
-              ? Icons.call_end
-              : videoCall
-                  ? Icons.videocam
-                  : Icons.call,
-          color: declined ? Colors.red : Colors.purple,
-        ),
+        callStatusIconFn(status)
       ],
     ),
   );
+}
+
+enum CallStatus {
+  callIncomming,
+  callOutGoing,
+  callMissed,
+  videoIncomming,
+
+  videoMissed,
+}
+
+callStatusIconFn(CallStatus callStatus) {
+  switch (callStatus) {
+    case CallStatus.callIncomming:
+      return Icon(
+        Icons.phone_callback_rounded,
+        color: Colors.green,
+      );
+
+    case CallStatus.callOutGoing:
+      return Icon(
+        Icons.call,
+        color: Colors.green,
+      );
+
+    case CallStatus.callMissed:
+      return Icon(
+        Icons.phone_missed_rounded,
+        color: Colors.red,
+      );
+
+    case CallStatus.videoIncomming:
+      return Icon(
+        Icons.videocam,
+        color: Colors.green,
+      );
+
+    case CallStatus.videoMissed:
+      return Icon(
+        Icons.missed_video_call_sharp,
+        color: Colors.red,
+      );
+  }
 }
