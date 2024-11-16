@@ -3,15 +3,17 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:talksy/domain/constants/asset_paths.dart';
+import 'package:talksy/domain/routes/routes.dart';
 import 'package:talksy/domain/theme/app_theme.dart';
 
 import '../../domain/constants/app_strings.dart';
 import '../../domain/models/country_model/country_model.dart';
-  ValueNotifier<CountryDataModel> selctedCountryModel = ValueNotifier(CountryDataModel(
-    flagPath: Assetpaths.authScreensAssets.indianFLag,
-    name: "India",
-    numberCode: "+91",
-  ));
+
+ValueNotifier<CountryDataModel> selctedCountryModel = ValueNotifier(CountryDataModel(
+  flagPath: Assetpaths.authScreensAssets.indianFLag,
+  name: "India",
+  numberCode: "+91",
+));
 
 class SignInPage extends StatefulWidget {
   @override
@@ -21,6 +23,8 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   String _selectedCountry = 'India';
   String _phoneNumber = '';
+  late TextEditingController controller = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   List<CountryDataModel> countries = [CountryDataModel(flagPath: Assetpaths.authScreensAssets.indianFLag, name: "India", numberCode: "+91"), CountryDataModel(flagPath: Assetpaths.authScreensAssets.usaFlag, name: "USA", numberCode: "+046"), CountryDataModel(flagPath: Assetpaths.authScreensAssets.spainFlag, name: "Spain", numberCode: "+83")];
 
@@ -43,7 +47,7 @@ class _SignInPageState extends State<SignInPage> {
               ),
               SvgPicture.asset(Assetpaths.authScreensAssets.signinPageBanner),
               SizedBox(height: 60.h),
-              Text(AppStrings.signin_screen_add_phone_number_title, style: AppTheme.displayLarge),
+              Text(AppStrings.signin_screen_add_phone_number_title, style: AppTheme.displayMedium),
               SizedBox(height: 16.h),
               Text(AppStrings.signin_screen_body, textAlign: TextAlign.center, style: AppTheme.bodyMedium),
               SizedBox(height: 24.h),
@@ -57,11 +61,14 @@ class _SignInPageState extends State<SignInPage> {
                         const SizedBox(
                           width: 8,
                         ),
-                        SizedBox(width: 20, height: 30, child: Image.asset(countries[0].flagPath)),
+                        SizedBox(width: 25, child: Image.asset(countries[0].flagPath)),
                         const SizedBox(
                           width: 15,
                         ),
-                        const Text('India'),
+                        Text(
+                          'India',
+                          style: AppTheme.bodyMedium,
+                        ),
                       ],
                     ),
                   ),
@@ -72,11 +79,14 @@ class _SignInPageState extends State<SignInPage> {
                         const SizedBox(
                           width: 8,
                         ),
-                        SizedBox(width: 20, height: 30, child: Image.asset(countries[1].flagPath)),
+                        SizedBox(width: 25,  child: Image.asset(countries[1].flagPath)),
                         const SizedBox(
                           width: 15,
                         ),
-                        const Text('USA'),
+                        Text(
+                          'USA',
+                          style: AppTheme.bodyMedium,
+                        ),
                       ],
                     ),
                   ),
@@ -87,11 +97,14 @@ class _SignInPageState extends State<SignInPage> {
                         const SizedBox(
                           width: 8,
                         ),
-                        SizedBox(width: 20, height: 30, child: Image.asset(countries[2].flagPath)),
+                        SizedBox(width: 25,  child: Image.asset(countries[2].flagPath)),
                         const SizedBox(
                           width: 15,
                         ),
-                        const Text('Spain'),
+                        Text(
+                          'Spain',
+                          style: AppTheme.bodyMedium,
+                        ),
                       ],
                     ),
                   ),
@@ -105,50 +118,70 @@ class _SignInPageState extends State<SignInPage> {
                 },
                 decoration: InputDecoration(
                   hintText: 'Select Country',
+                  hintStyle: AppTheme.bodyMedium,
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: const BorderSide(color: Colors.black)),
                 ),
               ),
               SizedBox(height: 16.h),
 
-              // TextFormField(
-              //   controller: TextEditingController(),
-              //   keyboardType: TextInputType.numberWithOptions(),
-              //   style: TextStyle(color: Colors.black),
-              //   cursorColor: Colors.pink,
-              //   decoration: InputDecoration(
-
-              //     hintText: 'Phone Number',
-
-              //     border: OutlineInputBorder(),
-              //     prefixIcon: Row(
-              //       children: [
-              //         // const SizedBox(
-              //         //   width: 25,
-              //         // ),
-              //         // Text(selctedCountryModel.numberCode),
-              //         // const SizedBox(
-              //         //   width: 25,
-              //         // ),
-              //         // Container(
-              //         //   height: 30,
-              //         //   width: 0.2,
-              //         //   color: Colors.black,
-              //         // ),
-              //       ],
-              //     ),
-              //   ),
-              //   onChanged: (value) {
-              //     setState(() {
-              //       _phoneNumber = value;
-              //     });
-              //   },
-              // ),
-              PhoneNumberInput(
-                countryCode: selctedCountryModel.value.numberCode,
+    
+              Form(
+                key: _formKey,
+                child: TextFormField(
+                  controller: controller,
+                  keyboardType: TextInputType.phone, // Changed from numberWithOptions
+                  style: AppTheme.bodyMedium,
+                  cursorColor: AppTheme.primaryColor,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                    LengthLimitingTextInputFormatter(10),
+                  ],
+                  decoration: InputDecoration(
+                    hintText: 'Phone Number',
+                    hintStyle: AppTheme.bodyMedium,
+                    border: const OutlineInputBorder(),
+                    prefixIcon: Row(
+                      mainAxisSize: MainAxisSize.min, // Important fix
+                      children: [
+                        const SizedBox(width: 20),
+                        ValueListenableBuilder<CountryDataModel>(
+                            valueListenable: selctedCountryModel,
+                            builder: (context, value, child) {
+                              return Text(value.numberCode,style: AppTheme.bodyMedium,);
+                            }), // You can make this dynamic
+                        const SizedBox(width: 25),
+                        Container(
+                          height: 24,
+                          width: 1,
+                          color: Colors.grey,
+                        ),
+                        const SizedBox(width: 12),
+                      ],
+                    ),
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      _phoneNumber = value;
+                    });
+                  },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter a phone number';
+                    }
+                    if (value.length < 10) {
+                      return 'Please enter a valid 10-digit phone number';
+                    }
+                    return null;
+                  },
+                ),
               ),
               SizedBox(height: 120.h),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (_formKey.currentState?.validate() ?? false) {
+                    Navigator.of(context).pushNamed(RoutePaths.enterOtpPage, arguments: controller.text);
+                  } else {}
+                },
                 style: ElevatedButton.styleFrom(minimumSize: Size.fromHeight(58.h), backgroundColor: AppTheme.primaryColor),
                 child: Text(
                   'Next',
@@ -211,11 +244,10 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
           children: [
             const SizedBox(width: 20),
             ValueListenableBuilder<CountryDataModel>(
-              valueListenable: selctedCountryModel,
-              builder: (context,value,child) {
-                return Text(value.numberCode);
-              }
-            ), // You can make this dynamic
+                valueListenable: selctedCountryModel,
+                builder: (context, value, child) {
+                  return Text(value.numberCode);
+                }), // You can make this dynamic
             const SizedBox(width: 25),
             Container(
               height: 24,

@@ -37,6 +37,8 @@ flutter:
   assets:
     - assets/images/
     - assets/translations/
+    - assets/images/profile/
+    - assets/images/onboarding/
 
 # Move flutter_native_splash to top level
 flutter_native_splash:

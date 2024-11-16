@@ -22,9 +22,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   final List<Widget> images = List.generate(
     imageAssetPaths.length,
-    (index) => SvgPicture.asset(
-      imageAssetPaths[index],
-      fit: BoxFit.fitHeight,
+    (index) => Padding(
+      padding: const EdgeInsets.only(left: 20,right: 20),
+      child: SvgPicture.asset(
+        imageAssetPaths[index],
+        fit: BoxFit.fitHeight,
+      ),
     ),
   );
 
@@ -69,7 +72,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                   SizedBox(height: 83.h),
                   SizedBox(
-                    width: 325.w,
+                    // width: 325.w,
                     height: 480.h,
                     child: PageView.builder(
                       controller: pageController,
@@ -83,11 +86,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               children: [
                                 SizedBox(
                                   height: 270.h,
+                                  width: double.infinity,
                                   child: images[value],
                                 ),
                                 SizedBox(height: 80.h),
                                 Text(
                                   middleHeadStrings[value],
+                                  
                                   style: AppTheme.displayMediumPrimaryColor,
                                 ),
                                 SizedBox(height: 14.h),
@@ -111,7 +116,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
             // Pagination indicators
             Positioned(
-              bottom: 320.h,
+              bottom: 150.h,
               left: 0,
               right: 0,
               child: ValueListenableBuilder<int>(

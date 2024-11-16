@@ -6,7 +6,7 @@ import 'dart:io';
 class AppTheme {
   // Define the main color palette
   static const Color primaryColor = Color(0xFF6A0DAD); // Purple
-  static const Color accentColor = Color(0xFFF4E0FF); // Teal
+  static const Color accentColor = Color(0xFFF4E0FF); // TealColor(0xffF4E0FF)
 
   static const Color textColorPrimary = Color(0xFF000000); // Black
   static const Color textColorSecondary = Color(0xFF9E9E9E); // Dark gray
@@ -33,10 +33,12 @@ static TextStyle displayLarge = Platform.isIOS
     ? GoogleFonts.openSans(
         fontSize: 24.sp,  // 30 - 6
         fontWeight: FontWeight.w600,
+        color: Colors.black
       )
     : GoogleFonts.openSans(
         fontSize: 30.sp,
         fontWeight: FontWeight.w600,
+        color: Colors.black
       );
 
 static TextStyle displayLargePrimaryColor = Platform.isIOS
@@ -68,11 +70,11 @@ static TextStyle displayLargeGreyColor = Platform.isIOS
 static TextStyle displayMedium = Platform.isIOS
     ? GoogleFonts.openSans(
         fontSize: 21.sp,  // 27 - 6
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.bold,color: Colors.black
       )
     : GoogleFonts.openSans(
         fontSize: 27.sp,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.bold,color: Colors.black
       );
 
 static TextStyle displayMediumPrimaryColor = Platform.isIOS
@@ -104,11 +106,11 @@ static TextStyle displayMediumGreyColor = Platform.isIOS
 static TextStyle displaySmall = Platform.isIOS
     ? GoogleFonts.openSans(
         fontSize: 18.sp,  // 24 - 6
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.bold,color: Colors.black
       )
     : GoogleFonts.openSans(
         fontSize: 24.sp,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.bold,color: Colors.black
       );
 
 static TextStyle displaySmallPrimaryColor = Platform.isIOS
@@ -140,11 +142,11 @@ static TextStyle displaySmallGreyColor = Platform.isIOS
 static TextStyle titleLarge = Platform.isIOS
     ? GoogleFonts.openSans(
         fontSize: 16.sp,  // 22 - 6
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w600,color: Colors.black
       )
     : GoogleFonts.openSans(
         fontSize: 22.sp,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w600,color: Colors.black
       );
 
 static TextStyle titleLargePrimaryColor = Platform.isIOS
@@ -174,11 +176,11 @@ static TextStyle titleLargeGreyColor = Platform.isIOS
 static TextStyle titleMedium = Platform.isIOS
     ? GoogleFonts.openSans(
         fontSize: 14.sp,  // 20 - 6
-        fontWeight: FontWeight.normal,
+        fontWeight: FontWeight.normal,color: Colors.black
       )
     : GoogleFonts.openSans(
         fontSize: 20.sp,
-        fontWeight: FontWeight.normal,
+        fontWeight: FontWeight.normal,color: Colors.black
       );
 
 static TextStyle titleMediumPrimaryColor = Platform.isIOS
@@ -210,11 +212,11 @@ static TextStyle titleMediumGreyColor = Platform.isIOS
 static TextStyle bodyLarge = Platform.isIOS
     ? GoogleFonts.openSans(
         fontSize: 12.sp,  // 18 - 6
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w600,color: Colors.black
       )
     : GoogleFonts.openSans(
         fontSize: 18.sp,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w600,color: Colors.black
       );
 
 static TextStyle bodyLargePrimaryColor = Platform.isIOS
@@ -285,10 +287,12 @@ static TextStyle bodySmall = Platform.isIOS
     ? GoogleFonts.openSans(
         fontSize: 10.sp,  // 16 - 6
         fontWeight: FontWeight.normal,
+        color: Colors.black
       )
     : GoogleFonts.openSans(
         fontSize: 16.sp,
         fontWeight: FontWeight.normal,
+        color: Colors.black
       );
 
 static TextStyle bodySmallPrimaryColor = Platform.isIOS
@@ -321,12 +325,13 @@ static TextStyle labelLarge = Platform.isIOS
     ? GoogleFonts.openSans(
         fontSize: 10.sp,  // 16 - 6
         fontWeight: FontWeight.normal,
-        color: Colors.grey[400],
+      color: Colors.black
+        
       )
     : GoogleFonts.openSans(
         fontSize: 16.sp,
         fontWeight: FontWeight.normal,
-        color: Colors.grey[400],
+        color: Colors.black
       );
 
 static TextStyle labelLargePrimaryColor = Platform.isIOS
@@ -358,11 +363,11 @@ static TextStyle labelLargeGreyColor = Platform.isIOS
 static TextStyle labelMedium = Platform.isIOS
     ? GoogleFonts.openSans(
         fontSize: 8.sp,  // 14 - 6
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w600,color: Colors.black
       )
     : GoogleFonts.openSans(
         fontSize: 14.sp,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w600,color: Colors.black
       );
 
 static TextStyle labelMediumPrimaryColor = Platform.isIOS
@@ -394,11 +399,11 @@ static TextStyle labelMediumGreyColor = Platform.isIOS
 static TextStyle labelSmall = Platform.isIOS
     ? GoogleFonts.openSans(
         fontSize: 6.sp,  // 12 - 6
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w600,color: Colors.black
       )
     : GoogleFonts.openSans(
         fontSize: 12.sp,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w600,color: Colors.black
       );
 
 static TextStyle labelSmallPrimaryColor = Platform.isIOS

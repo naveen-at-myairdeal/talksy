@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:talksy/domain/constants/asset_paths.dart';
+import 'package:talksy/domain/routes/routes.dart';
 
 import '../../domain/constants/app_strings.dart';
 import '../../domain/theme/app_theme.dart';
@@ -90,8 +91,8 @@ class _OTPInputScreenState extends State<OTPInputScreen> {
                   pinTheme: PinTheme(
                     shape: PinCodeFieldShape.box,
                     borderRadius: BorderRadius.circular(8),
-                    fieldHeight: 45,
-                    fieldWidth: 45,
+                    fieldHeight: 60,
+                    fieldWidth: 60,
                     activeFillColor: Colors.white,
                     selectedFillColor: Colors.white,
                     inactiveFillColor: Colors.purple[50],
@@ -148,8 +149,11 @@ class _OTPInputScreenState extends State<OTPInputScreen> {
                     onPressed: currentOTP.length == 6
                         ? () {
                             print('OTP Entered: $currentOTP');
+                            Navigator.of(context).pushNamed(RoutePaths.languageSelectionScreen);
                           }
-                        : null,
+                        : () {
+                            
+                          },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: currentOTP.length == 6 ? AppTheme.primaryColor : Colors.grey[400],
                       shape: RoundedRectangleBorder(

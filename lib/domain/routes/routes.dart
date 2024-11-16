@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:talksy/presentation/home/home_screen.dart';
 import 'package:talksy/presentation/onboarding_screen/onboarding_screen.dart';
 
 import '../../application/auth/otp_bloc/otp_bloc.dart';
@@ -8,6 +9,7 @@ import '../../presentation/auth/enter_phone_number.dart';
 import '../../presentation/auth/get_user_name_and_profile_pic_screen.dart';
 import '../../presentation/auth/select_language_screen.dart';
 import '../../presentation/call/new_call_contact_list_screen.dart';
+import '../../presentation/profile/profile_screen.dart';
 
 abstract class RoutePaths {
   static const String onBoardingScreen = '/onboarding_screen';
@@ -16,9 +18,10 @@ abstract class RoutePaths {
   static const String languageSelectionScreen = '/languageSelectionScreen';
   static const String getUserNameAndProfilePicture = '/getUserNameAndProfilePicture';
   static const String newCallScreenContactList = '/newCallScreenContactList';
+  static const String homeScreen = '/homeScreen';
+  static const String profile = '/profile';
 }
 
-//NewCallScreen
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -34,7 +37,7 @@ class AppRouter {
             builder: (_) => BlocProvider(
                   create: (context) => OtpBloc(),
                   child: OTPInputScreen(
-                    phoneNumber: "9855668686",
+                    phoneNumber: args,
                   ),
                 ));
       case RoutePaths.languageSelectionScreen:
@@ -43,6 +46,13 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => GetUserNameAndProfilePicture());
       case RoutePaths.newCallScreenContactList:
         return MaterialPageRoute(builder: (_) => ContactsPage());
+      case RoutePaths.homeScreen:
+        return MaterialPageRoute(builder: (_) => HomeScreen());
+       case RoutePaths.profile:
+        return MaterialPageRoute(builder: (_) => ProfilePage());
+
+
+        
 
       default:
         return MaterialPageRoute(

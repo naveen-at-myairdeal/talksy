@@ -26,5 +26,6 @@ _i1.GetIt $initGetIt(
   gh.factory<_i3.AuthScreensAssets>(() => _i3.AuthScreensAssets());
   gh.factory<_i3.BottomNavAssets>(() => _i3.BottomNavAssets());
   gh.factory<_i3.OnBoardingScreenAssets>(() => _i3.OnBoardingScreenAssets());
+  gh.factory<_i3.Profile>(() => _i3.Profile());
   return get;
 }

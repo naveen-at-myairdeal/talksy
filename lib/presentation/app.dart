@@ -30,11 +30,9 @@ class MyApp extends StatelessWidget {
             locale: context.locale,
             supportedLocales: context.supportedLocales,
             localizationsDelegates: context.localizationDelegates,
-            initialRoute: RoutePaths.newCallScreenContactList,
+            initialRoute: RoutePaths.onBoardingScreen,
             onGenerateRoute: AppRouter.generateRoute,
-            // home:const HomeScreen(
-            //     // phoneNumber: "986656898",
-            //   ),
+            
           );
         });
   }

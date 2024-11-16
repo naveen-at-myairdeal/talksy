@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
 import 'package:talksy/domain/constants/asset_paths.dart';
+import 'package:talksy/domain/routes/routes.dart';
 import 'package:talksy/domain/theme/app_theme.dart';
 
 class GetUserNameAndProfilePicture extends StatefulWidget {
@@ -14,6 +15,7 @@ class GetUserNameAndProfilePicture extends StatefulWidget {
   @override
   _GetUserNameAndProfilePictureState createState() => _GetUserNameAndProfilePictureState();
 }
+
 class _GetUserNameAndProfilePictureState extends State<GetUserNameAndProfilePicture> {
   final ValueNotifier<XFile?> _profileImageNotifier = ValueNotifier<XFile?>(null);
   final TextEditingController _nameController = TextEditingController();
@@ -72,7 +74,7 @@ class _GetUserNameAndProfilePictureState extends State<GetUserNameAndProfilePict
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.arrow_back, color: Colors.purple),
+                    icon: const Icon(Icons.arrow_back, color: AppTheme.primaryColor),
                     onPressed: () => Navigator.pop(context),
                     padding: EdgeInsets.zero,
                     alignment: Alignment.centerLeft,
@@ -80,7 +82,6 @@ class _GetUserNameAndProfilePictureState extends State<GetUserNameAndProfilePict
                 ],
               ),
               SizedBox(height: 100.h),
-
               GestureDetector(
                 onTap: _selectImage,
                 child: ValueListenableBuilder<XFile?>(
@@ -119,11 +120,12 @@ class _GetUserNameAndProfilePictureState extends State<GetUserNameAndProfilePict
                 "Enter your name and add a profile picture.",
                 style: AppTheme.titleMediumPrimaryColor,
               ),
-              SizedBox(height: 20.h),
+              SizedBox(height: 30.h),
               TextField(
                 controller: _nameController,
                 decoration: InputDecoration(
                   hintText: 'Enter your name ...',
+                  hintStyle: AppTheme.labelLargeGreyColor,
                   border: OutlineInputBorder(borderSide: BorderSide(width: 0)),
                   filled: true,
                   fillColor: Colors.purple[50],
@@ -131,7 +133,6 @@ class _GetUserNameAndProfilePictureState extends State<GetUserNameAndProfilePict
                 ),
               ),
               const Spacer(),
-
               ElevatedButton(
                 onPressed: () {
                   setState(() {
@@ -139,6 +140,7 @@ class _GetUserNameAndProfilePictureState extends State<GetUserNameAndProfilePict
                       _errorMessage = "Name cannot be empty";
                     } else {
                       _errorMessage = null;
+                      Navigator.of(context).pushNamed(RoutePaths.homeScreen);
                       // Handle save action here
                     }
                   });
@@ -146,9 +148,12 @@ class _GetUserNameAndProfilePictureState extends State<GetUserNameAndProfilePict
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      'Save',
-                      style: GoogleFonts.openSans(color: Colors.white),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Save',
+                        style: GoogleFonts.openSans(color: Colors.white,),
+                      ),
                     ),
                   ],
                 ),
