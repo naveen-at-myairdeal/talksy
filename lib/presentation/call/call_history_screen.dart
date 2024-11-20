@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:talksy/domain/routes/routes.dart';
 import 'package:talksy/domain/theme/app_theme.dart';
 
+import '../../domain/constants/asset_paths.dart';
+
 class CallHistoryScreen extends StatefulWidget {
   const CallHistoryScreen({super.key});
 
@@ -83,10 +85,10 @@ class _CallHistoryScreenState extends State<CallHistoryScreen> {
                     Expanded(
                       child: ListView(
                         children: [
-                          buildCallTile(context, "Zap,ciok,Lii, anny", "51:16 Mins", "4", "assets/group_image.png", status: CallStatus.videoMissed),
-                          buildCallTile(context, "Jack", "10:19 Mins", "4", "assets/jack_image.png", subtitleTime: "10:40 AM", status: CallStatus.callOutGoing),
-                          buildCallTile(context, "Micky", "Declined calls", "1", "assets/micky_image.png", subtitleTime: "10:40 AM", status: CallStatus.callMissed),
-                          buildCallTile(context, "XYZ Group", "51:20 Mins", "1", "assets/xyz_group_image.png", subtitleTime: "1:04 PM", status: CallStatus.videoIncomming),
+                          buildCallTile(context, "Zap,ciok,Lii, anny", "51:16 Mins", "4", PlcaeHolders.one, status: CallStatus.videoMissed),
+                          buildCallTile(context, "Jack", "10:19 Mins", "4", PlcaeHolders.two, subtitleTime: "10:40 AM", status: CallStatus.callOutGoing),
+                          buildCallTile(context, "Micky", "Declined calls", "1", PlcaeHolders.three, subtitleTime: "10:40 AM", status: CallStatus.callMissed),
+                          buildCallTile(context, "XYZ Group", "51:20 Mins", "1", PlcaeHolders.four, subtitleTime: "1:04 PM", status: CallStatus.videoIncomming),
                           SizedBox(
                             height: 30.h,
                           ),

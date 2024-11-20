@@ -63,13 +63,13 @@ class _ContactsPageState extends State<ContactsPage> {
                                       // Go back action
                                       Navigator.of(context).pop();
                                     },
-                                    child: Icon(Icons.arrow_back, color: Colors.purple),
+                                    child: Icon(Icons.arrow_back, color: AppTheme.primaryColor),
                                   ),
                         
                                   // Title
                                   Text(
                                     'New call',
-                                    style: AppTheme.displayLargePrimaryColor
+                                    style: AppTheme.displayMediumPrimaryColor
                                   ),
                         
                                   // Close Icon

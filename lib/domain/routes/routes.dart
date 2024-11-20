@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:talksy/presentation/chat/chat_screen.dart';
 import 'package:talksy/presentation/home/home_screen.dart';
 import 'package:talksy/presentation/onboarding_screen/onboarding_screen.dart';
 
@@ -9,6 +10,7 @@ import '../../presentation/auth/enter_phone_number.dart';
 import '../../presentation/auth/get_user_name_and_profile_pic_screen.dart';
 import '../../presentation/auth/select_language_screen.dart';
 import '../../presentation/call/new_call_contact_list_screen.dart';
+import '../../presentation/chat/add_new_members_screen.dart';
 import '../../presentation/profile/profile_screen.dart';
 
 abstract class RoutePaths {
@@ -20,6 +22,8 @@ abstract class RoutePaths {
   static const String newCallScreenContactList = '/newCallScreenContactList';
   static const String homeScreen = '/homeScreen';
   static const String profile = '/profile';
+  static const String addNewMembers = '/addNewMembers';
+  static const String chatScreen = '/chatScreen';
 }
 
 class AppRouter {
@@ -48,11 +52,13 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => ContactsPage());
       case RoutePaths.homeScreen:
         return MaterialPageRoute(builder: (_) => HomeScreen());
-       case RoutePaths.profile:
+      case RoutePaths.profile:
         return MaterialPageRoute(builder: (_) => ProfilePage());
 
-
-        
+      case RoutePaths.addNewMembers:
+        return MaterialPageRoute(builder: (_) => AddMembersScreen());
+      case RoutePaths.chatScreen:
+        return MaterialPageRoute(builder: (_) => ChatScreen());
 
       default:
         return MaterialPageRoute(

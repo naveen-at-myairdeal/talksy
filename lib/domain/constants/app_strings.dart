@@ -1,12 +1,9 @@
 // ignore_for_file: constant_identifier_names
 
 abstract class AppStrings {
-
-
   static const String app_name = "Talksy";
   static const String onboarding_screen_one_title = "Welcome To $app_name";
-    static const String onboarding_screen_skip = "Skip";
-
+  static const String onboarding_screen_skip = "Skip";
   static const String onboarding_screen_one_middle_head = "Have Fun";
   static const String oneboarding_screen_one_body_label = "Have fun like never before! Dive into chats,\nshare laughs, and make every moment count.";
   static const String onboarding_screen_two_middle_head = "Chat with friends";
@@ -20,6 +17,4 @@ abstract class AppStrings {
   static const String otp_screen_entercode = "Enter Code";
   static const String otp_screen_body = "We have sent and SMS with a varification code to your number ";
   static const String otp_screen_resend_code_text = "Re-send Code";
-    
-
 }

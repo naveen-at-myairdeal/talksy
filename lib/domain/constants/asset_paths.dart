@@ -49,3 +49,13 @@ class Profile {
 
   final String usage = "assets/images/profile/usage.svg";
 }
+
+class PlcaeHolders {
+  static final String one = "assets/images/placeholder/1.png";
+  static final String two = "assets/images/placeholder/2.png";
+
+  static final String three = "assets/images/placeholder/3.png";
+  static final String four = "assets/images/placeholder/4.png";
+  static final String five = "assets/images/placeholder/5.png";
+  static final String six = "assets/images/placeholder/6.png";
+}
