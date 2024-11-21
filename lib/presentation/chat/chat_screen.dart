@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:talksy/domain/constants/asset_paths.dart';
+import 'package:talksy/domain/functions.dart';
 import 'dart:math';
 
 import 'package:talksy/domain/theme/app_theme.dart';
@@ -28,6 +29,7 @@ class _ChatScreenState extends State<ChatScreen> {
       'text': 'Hai, Good Morning',
       'isUser': true,
       'time': '6:01 PM',
+       'author': 'Monisha Pandey'
     },
     {
       'text': 'How you doing ?',
@@ -38,7 +40,7 @@ class _ChatScreenState extends State<ChatScreen> {
       'text': 'Hey Jack, Im doing good re',
       'isUser': false,
       'time': '6:30 PM',
-      'author': 'Monisha Pandey',
+      // 'author': 'Monisha Pandey',
     },
     {
       'text': 'Good!',
@@ -56,6 +58,7 @@ class _ChatScreenState extends State<ChatScreen> {
       'isUser': true,
       'time': '6:31 PM',
       'duration': '0:09',
+       'author': 'Sudarshan Krishna'
     },
     {
       'text': 'Breakfast?',
@@ -186,7 +189,7 @@ class _ChatScreenState extends State<ChatScreen> {
         children: [
           Flexible(
             child: Column(
-              crossAxisAlignment: isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+              crossAxisAlignment: isUser ? CrossAxisAlignment.start : CrossAxisAlignment.end,
               children: [
                 if (message['author'] != null)
                   Padding(
@@ -199,26 +202,52 @@ class _ChatScreenState extends State<ChatScreen> {
                       ),
                     ),
                   ),
-                Container(
-                  padding: const EdgeInsets.only(top: 8, bottom: 8, right: 30, left: 16),
-                  decoration: BoxDecoration(
-                    color: isUser ? Colors.purple[100] : Colors.grey[300],
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: isAudio
-                      ? _buildAudioPlayer(
-                          isUser,
-                          isUser ? isPlaying1 : isPlaying2,
-                          isUser ? playbackProgress1 : playbackProgress2,
-                          message['duration'] ?? '0:00',
-                        )
-                      : Text(
-                          message['text'],
-                          style: const TextStyle(
-                            color: Colors.black87,
-                            fontSize: 16,
-                          ),
-                        ),
+                Row(
+                  children: [
+                    isUser ? Container() : Spacer(),
+                    Container(
+                      padding: const EdgeInsets.only(top: 8, bottom: 8, right: 30, left: 16),
+                      decoration: BoxDecoration(
+                        color: isUser ? Colors.purple[100] : Colors.grey[300],
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: isAudio
+                          ? _buildAudioPlayer(
+                              isUser,
+                              isUser ? isPlaying1 : isPlaying2,
+                              isUser ? playbackProgress1 : playbackProgress2,
+                              message['duration'] ?? '0:00',
+                            )
+                          : Text(
+                              message['text'],
+                              style: const TextStyle(
+                                color: Colors.black87,
+                                fontSize: 16,
+                              ),
+                            ),
+                    ),
+                    isAudio
+                        ? GestureDetector(
+                            onTap: () {
+                              showLanguageModalSheet(context);
+                            },
+                            child: Container(
+                              margin: EdgeInsets.only(left: 5),
+                              height: 50,
+                              width: 30,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadiusDirectional.circular(5),
+                                color: isUser ? Colors.purple[100] : Colors.grey[300],
+                              ),
+                              child: Icon(
+                                Icons.keyboard_arrow_down_outlined,
+                                color: AppTheme.primaryColor,
+                              ),
+                            ),
+                          )
+                        : Container()
+                  ],
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 4.0),
@@ -256,6 +285,7 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
             const SizedBox(width: 8),
             _buildCustomWaveform(progress, isUser),
+            const SizedBox(width: 8),
           ],
         ),
         Positioned(
@@ -387,38 +417,47 @@ class _ChatScreenState extends State<ChatScreen> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.add),
+                    icon: const Icon(Icons.emoji_emotions_outlined),
                     onPressed: () {},
                     color: Colors.purple,
                   ),
-                 Expanded(
-  child: Container(
-    constraints: BoxConstraints(
-      maxHeight: 80, // Limits the height to approximately 4-5 lines
-    ),
-    child: Scrollbar(
-      thumbVisibility: true,
-      child: TextField(
-        controller: _messageController,
-        decoration: const InputDecoration(
-          hintText: 'Message',
-          border: InputBorder.none,
-          contentPadding: EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 8,
-          ),
-        ),
-        maxLines: null, // Allows the user to write multiple lines
-        keyboardType: TextInputType.multiline,
-        scrollPhysics: BouncingScrollPhysics(), // Adds a smooth scrolling effect
-      ),
-    ),
-  ),
-),
-
+                  Expanded(
+                    child: Container(
+                      constraints: BoxConstraints(
+                        maxHeight: 80, // Limits the height to approximately 4-5 lines
+                      ),
+                      child: Scrollbar(
+                        thumbVisibility: true,
+                        child: TextField(
+                          onSubmitted: (value) {},
+                          controller: _messageController,
+                          decoration: const InputDecoration(
+                            hintText: 'Message',
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 8,
+                            ),
+                          ),
+                          maxLines: null, // Allows the user to write multiple lines
+                          keyboardType: TextInputType.multiline,
+                          scrollPhysics: BouncingScrollPhysics(), // Adds a smooth scrolling effect
+                        ),
+                      ),
+                    ),
+                  ),
                   IconButton(
-                    icon: const Icon(Icons.emoji_emotions_outlined),
-                    onPressed: () {},
+                    icon: const Icon(Icons.send),
+                    onPressed: () {
+                      setState(() {
+                        messages.add({
+                          'text': _messageController.text,
+                          'isUser': false,
+                          'time': getCurrentTimeFormatted(),
+                        });
+                      });
+                      _messageController.clear();
+                    },
                     color: Colors.purple,
                   ),
                   IconButton(
@@ -540,5 +579,117 @@ class WaveformPainter extends CustomPainter {
   @override
   bool shouldRepaint(WaveformPainter oldDelegate) {
     return oldDelegate.progress != progress;
+  }
+}
+
+void showLanguageModalSheet(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+    ),
+    builder: (context) {
+      return LanguageModalContent();
+    },
+  );
+}
+
+class LanguageModalContent extends StatefulWidget {
+  @override
+  _LanguageModalContentState createState() => _LanguageModalContentState();
+}
+
+class _LanguageModalContentState extends State<LanguageModalContent> with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  final AudioPlayer _audioPlayer = AudioPlayer();
+  bool isPlaying = false;
+
+  final List<String> languages = ['English', 'Hindi', 'Chinese', 'Arabic', 'Malayalam'];
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: languages.length, vsync: this);
+  }
+
+  void toggleAudio() async {
+    if (isPlaying) {
+      await _audioPlayer.pause();
+    } else {
+      await _audioPlayer.play(AssetSource('assets/audio/sample-12s.mp3')); // Replace with your audio URL
+    }
+    setState(() {
+      isPlaying = !isPlaying;
+    });
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    _audioPlayer.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height * (0.6),
+      padding: EdgeInsets.all(16.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TabBar(
+            controller: _tabController,
+            labelColor: Colors.purple,
+            unselectedLabelStyle: AppTheme.labelSmallGreyColor,
+            labelStyle: AppTheme.labelSmallPrimaryColor,
+            unselectedLabelColor: Colors.grey,
+            indicatorColor: Colors.purple,
+            tabs: languages
+                .map((lang) => Tab(
+                      text: lang,
+                    ))
+                .toList(),
+          ),
+          SizedBox(height: 16),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: languages.map((lang) {
+                return Text(
+                  'Content in ${lang == languages[0]}',
+                  style: TextStyle(fontSize: 16),
+                );
+              }).toList(),
+            ),
+          ),
+          SizedBox(height: 16),
+          GestureDetector(
+            onTap: toggleAudio,
+            child: Column(
+              children: [
+                Container(
+                  height: 50,
+                  child: Center(
+                    child: Icon(
+                      isPlaying ? Icons.pause_circle : Icons.play_circle,
+                      color: Colors.purple,
+                      size: 48,
+                    ),
+                  ),
+                ),
+                Slider(
+                  value: 0.0, // Replace with actual audio position
+                  onChanged: (value) {},
+                  activeColor: Colors.purple,
+                  inactiveColor: Colors.grey,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
